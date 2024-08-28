@@ -2,13 +2,18 @@
     padding: 0;
     margin: 0;
 }
-.anime-favorite{
-    border: 2px solid rgb(143, 22, 26);
 
-};
 
-.color1 { #6e9167 };
+/*.color1 { #6e9167 };
 .color2 { #ffdd8c };
 .color3 { #ff8030 };
 .color4 { #cc4e00 };
-.color5 { #700808 };
+.color5 { #700808 };*/
+
+
+.title{
+    font-family: "Roboto", sans-serif;
+    font-weight: 500px;
+    font-style: normal;
+    color: white;
+};
