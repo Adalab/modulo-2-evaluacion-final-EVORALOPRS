@@ -10,20 +10,30 @@
     <link rel="stylesheet" href="./css/styles.css">
     <title>Anime Finder</title>
 </head>
-<body class="background">
-    <header class="tittle"></header>
-    <section class="section-one">
+<body>
+    <header class="container">
         <h1 class="title">Get Your Anime</h1>
-        <input type="text" class="js-text" placeholder="animes">
-        <button class="js-btn-search">Search</button>
-        <button class="js-btn-reset">Reset</button>
-        <h3>Drink List</h3>
-        <ul class="js-counter-list"></ul>
-    </section>
-    <section class="section-two">
-        <h3 class="title">Favorite Drinks</h3>
-        <ul class="js-favorite-list"></ul>
-    </section>
+        <div class="divBtn">
+            <input type="text" class="js-text" placeholder="animes">
+            <button class="js-btn-search">Search</button>
+            <button class="js-btn-reset">Reset</button>
+        </div>
+    </header>
+    <main>
+        <section class="one">
+            <h3 class="title  all">All Animes</h3>
+            <ul class="js-counter-list"></ul>
+        </section>
+        <section class="two">
+            <h3 class="title">Favorite Animes</h3>
+            <ul class="js-favorite-list"></ul>
+        </section>
+
+    </main>
+    <footer>
+        <div>&copy;  Anime finder 2024</div>
+    </footer>
+       
     <script src="./js/main.js"></script>
 </body>
 </html>

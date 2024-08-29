@@ -24,6 +24,10 @@ si la bebida no aparece en favoritos, tenemos que añadirla, si existe en el arr
 --> tienen que aparecer a la izquierda, pintando 
 */ 
 
+/* Cuarta parte
+1- Añadir los datos al localStorage
+2- Cuando recarge la pagina que se almacenen los animes seleccionados por el usuario 
+*/ 
 const buttonSearch = document.querySelector('.js-btn-search');
 const inputSearch = document.querySelector('.js-text');
 const buttonReset = document.querySelector('.js-btn-reset');
@@ -51,34 +55,66 @@ const handleClickFavoriteAnime = (event) =>{
     console.log (findAnime);
     // Meter dentro del array favorite Animes el findAnime(con el push)
     favoriteAnimes.push(findAnime)
+    //Llamamos a la funcion para que añada a la lista de favoritos
+    renderAnimesFavorites(favoriteAnimes);
+    // todos los elementos de los animes tienen que ser igual al id que ha seleccionado el usuario
 
-  // todos los elementos de los animes tienen que ser igual al id que ha seleccionado el usuario
-
+    //Guardamos los datos en LS, lo convertimos en un array dado que nos da un string con 'JSON.stringify'
+     localStorage.setItem('anime',JSON.stringify(favoriteAnimes)); 
+    //pintamos en el HTML
   };
 
-  
 };
+//Creamos una función en el que le pasemos un parametro con cualquier nombre porque necesitamos llamar al array las veces que haga falta. 
+
+
+
+
+
+
+
+
+
  // creamos una la lista de los animes favoritos para que se añadan los animes seleccionados
 const renderAnimesFavorites = (arrayAnimesFavorite) =>{
     ulCounterFavorites.innerHTML = '';
     for(const eachAnimeFavorite of arrayAnimesFavorite){
         const newFavoriteList = document.createElement('li');
         newFavoriteList.setAttribute('id',eachAnimeFavorite.mal_id);
+        newFavoriteList.setAttribute('class', 'animeCardFavorite');
         ulCounterFavorites.appendChild(newFavoriteList);
 
-        const newFavoriteTittle = document.createElement('h3');
-        newFavoriteList.appendChild(newFavoriteTittle);
+        const newFavoriteName = document.createElement('h3');
+        newFavoriteList.appendChild(newFavoriteName);
+        const newFavoriteTextName = document.createTextNode(eachAnimeFavorite.title)
+        newFavoriteName.appendChild(newFavoriteTextName);
+        
 
-        const nerImagefavorite = document.createElement('img');
-        if(eachAnimeFavorite.images.jpg.image_url === nul){
-            nerImagefavorite.setAttribute('src','https://via.placeholder.com/210x295/ffffff/666666/?text=anime')
-        }
-        nerImagefavorite.setAttribute('src', eachAnimeFavorite.images.jpg.image_url);
-        nerImagefavorite.setAttribute('alt', eachAnimeFavorite.title);
-        newFavoriteList.appendChild(nerImagefavorite);
+        const newImagefavorite = document.createElement('img');
+        if(eachAnimeFavorite.images.jpg.image_url === null){
+            newImagefavorite.setAttribute('src','https://via.placeholder.com/210x295/ffffff/666666/?text=anime')
+        };
+        newImagefavorite.setAttribute('src', eachAnimeFavorite.images.jpg.image_url);
+        newImagefavorite.setAttribute('alt', eachAnimeFavorite.title);
+        newImagefavorite.setAttribute('class','sizeImg');
+        newFavoriteList.appendChild(newImagefavorite);
+
+        //Buscamos si el anime si es  favorita( si esta que nos devuelva diferente de undefine y añadimos la clase de animeFavoite)
+  
     };
-
 };
+//guardamos los datos del servidor en el Array conviertiendo los datos con 'JSON.parse'.
+const animeLS = JSON.parse(localStorage.getItem('anime'));
+//animeLS !== null
+if(animeLS !== null){
+    favoriteAnimes = animeLS;
+    renderAnimesFavorites(favoriteAnimes)
+};
+
+    //pintamos los datos
+
+
+
 
 
 // con esta función pintaremos los datos del servidor y con render recorrera el array que nos devuelve. necesitaremos un parámetro, tenemos que recorrer el array para que nos recoja todos los datos con un bucle(for) porque nos devuelve todos los datos.
@@ -90,7 +126,7 @@ const renderAnimes = (arrayAnimes) =>{
         //creamos los elementos y los añadimos al DOM por orden jerarquico el 'h3' y las 'li' son hijos de la 'ul
         const newList = document.createElement('li');
         ulCounter.appendChild(newList);
-        newList.setAttribute('class', 'anime-favorite');
+        newList.setAttribute('class', 'animeCard');
         // añadimos un ID a la lista 
         newList.setAttribute('id',eachAnime.mal_id);
         newList.addEventListener('click', handleClickFavoriteAnime);
@@ -106,7 +142,14 @@ const renderAnimes = (arrayAnimes) =>{
         };
         newImage.setAttribute('src', eachAnime.images.jpg.image_url);
         newImage.setAttribute('alt', eachAnime.title);
+        newImage.setAttribute('class','sizeImg')
         newList.appendChild(newImage);
+
+        const newText = document.createElement('p');
+        newText.setAttribute('class','paragraph');
+        newList.appendChild(newText)
+        const counterText = document.createTextNode(eachAnime.synopsis);
+        newText.appendChild(counterText);
 
         
     };
@@ -125,13 +168,15 @@ const getDataApi = (searchValue) => {
     .then((anime) => {
         console.log(anime.data);
         animeList = anime.data; // guardamos los datos del servidor en mi array
-        console.log(anime);
+
         //llamamos al array para que se ejecute en está funcion
        renderAnimes(animeList);
 
     });
 };
-// mandamos la funcion para que cuando se cargue la pagina aparezcan naruto( se ejecuta la pag)
+
+
+
 getDataApi('naruto');
 
 // funcion manejadora del evento
@@ -140,6 +185,7 @@ function handleClickSearch(event){
     event.preventDefault();
     const searchValue = inputSearch.value; //cogemos el valor del input
     getDataApi(searchValue);//llamamos al valor del input
+    
 };
 buttonSearch.addEventListener('click', handleClickSearch);// realizamos el evento click sobre el boton de buscar
 
