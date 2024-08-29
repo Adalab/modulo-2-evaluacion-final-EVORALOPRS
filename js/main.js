@@ -1,6 +1,4 @@
 'use strict';
-//
-
 
 /* Primera parte
 1- Pedimos los datos al servidor con fech(url)
@@ -46,7 +44,9 @@ const handleClickFavoriteAnime = (event) =>{
   const findIndexAnimeFavorite = favoriteAnimes.findIndex((itemAnime)=> itemAnime.mal_id === idList);
   console.log(findIndexAnimeFavorite) // nos da -1 porque aún no tenemos nada añadido en el array
   //accedemos una condicional para añadir todo el objeto de los animes dentro de array de favorito, tenemos que buscar todo el la informacion del objeto de animes
+
   if(findIndexAnimeFavorite === -1){
+    //obtenemos la información del elemento completo dentro del array, porque ahora solo tenemos el ID,con el find() buscamos el 'id'
     const findAnime = animeList.find((item2Anime) => item2Anime.mal_id === idList);
     console.log (findAnime);
     // Meter dentro del array favorite Animes el findAnime(con el push)
@@ -55,21 +55,7 @@ const handleClickFavoriteAnime = (event) =>{
   // todos los elementos de los animes tienen que ser igual al id que ha seleccionado el usuario
 
   };
-  /*const indexAnimeFavorite = favoriteAnimes.findIndex((anime) => anime.mal_id === id);
-  console.log(indexAnimeFavorite);
-  if(indexAnimeFavorite === -1){
-    //obtenemos la información del elemento completo dentro del array, porque ahora solo tenemos el ID,con el find() buscamos el 'id'
-    const selectAnime = eachAnime.find((item)=> item.id === id);
-    //añadimos un elemento a un array con un push
-    favoriteAnimes.push(selectAnime);
-    console.log(favoriteAnime);
-    renderAnimes(arrayAnimes);
 
-    
-
-
-
-  };*/
   
 };
  // creamos una la lista de los animes favoritos para que se añadan los animes seleccionados
@@ -124,6 +110,7 @@ const renderAnimes = (arrayAnimes) =>{
 
         
     };
+    
 };
 
 
