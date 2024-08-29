@@ -62,15 +62,16 @@ const handleClickFavoriteAnime = (event) =>{
     //Guardamos los datos en LS, lo convertimos en un array dado que nos da un string con 'JSON.stringify'
      localStorage.setItem('anime',JSON.stringify(favoriteAnimes)); 
     //pintamos en el HTML
-  };
 
+    // Añadimos la clase para cambiar el estilo del elemento clicado
+   event.currentTarget.classList.add('favorite-selected');
+  };
+  
+ 
 };
 //Creamos una función en el que le pasemos un parametro con cualquier nombre porque necesitamos llamar al array las veces que haga falta. 
 
-
-
-
-
+//funcion click para eliminar los animes almacenados en la lista de favoritos
 
 
 
@@ -94,14 +95,24 @@ const renderAnimesFavorites = (arrayAnimesFavorite) =>{
         if(eachAnimeFavorite.images.jpg.image_url === null){
             newImagefavorite.setAttribute('src','https://via.placeholder.com/210x295/ffffff/666666/?text=anime')
         };
+        
         newImagefavorite.setAttribute('src', eachAnimeFavorite.images.jpg.image_url);
         newImagefavorite.setAttribute('alt', eachAnimeFavorite.title);
         newImagefavorite.setAttribute('class','sizeImg');
         newFavoriteList.appendChild(newImagefavorite);
+        
+        const newBtnDeleteFavorite = document.createElement('button');
+        newFavoriteList.appendChild(newBtnDeleteFavorite);
 
+        const newBtnDeleteFavoriteIcon = document.createElement('i');
+        newBtnDeleteFavoriteIcon.setAttribute('class','fa-sharp fa-solid fa-circle-xmark');
+        newBtnDeleteFavorite.appendChild(newBtnDeleteFavoriteIcon);
+        //newBtnDeleteFavoriteIcon.addEventListener('click',handleClickDeleteFavorite);
+        
         //Buscamos si el anime si es  favorita( si esta que nos devuelva diferente de undefine y añadimos la clase de animeFavoite)
   
     };
+   
 };
 //guardamos los datos del servidor en el Array conviertiendo los datos con 'JSON.parse'.
 const animeLS = JSON.parse(localStorage.getItem('anime'));
@@ -174,8 +185,6 @@ const getDataApi = (searchValue) => {
 
     });
 };
-
-
 
 getDataApi('naruto');
 

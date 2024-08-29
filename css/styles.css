@@ -17,16 +17,37 @@
     padding-top: 30px;
     padding-bottom: 20px;
     background-color: #ff8030;
-    color: white;
-   
-    
+    color: white;  
 }
+
 .title{
+    color: white;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding-top: 30px;
     padding-left: 50px;
     margin-right: 150px;
-    margin-left: 20px;
+    margin-left: 20px;  
+}
+
+.textInput{
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.btn-search{
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 2px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+.btn-reset{
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 2px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 
@@ -40,8 +61,8 @@ main{
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding-left: 30px;
     
@@ -50,12 +71,19 @@ footer{
     background-color: #ff8030;
     padding: 50px;
 }
+.favorite-selected{
+    background-color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    
+}
 .animeCard{
     display: flex;
     flex-direction: column;
     align-items:end;
     margin-top: 10px;
-    margin: 100px;
+   
+    
     
 }
 .animeCardFavorite{
@@ -78,5 +106,5 @@ footer{
 .paragraph{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 18px;
-    
+    text-align: center;
 }
