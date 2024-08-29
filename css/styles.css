@@ -29,6 +29,7 @@
     margin-left: 20px;  
 }
 
+
 .textInput{
     border: 2px solid black;
     border-radius: 5px;
@@ -64,8 +65,13 @@ main{
     background-color: black;
     color: white;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    padding-left: 30px;
-    
+    padding-left: 50px;
+    padding-right: 50px;
+
+}
+
+.one{
+    align-items: center;
 }
 footer{
     background-color: #ff8030;
@@ -80,8 +86,10 @@ footer{
 .animeCard{
     display: flex;
     flex-direction: column;
-    align-items:end;
-    margin-top: 10px;
+    align-items:center;
+    margin: 10px;
+    padding-top: 10px;
+    color: #ff8030;
    
     
     

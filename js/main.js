@@ -55,14 +55,14 @@ const handleClickFavoriteAnime = (event) =>{
     console.log (findAnime);
     // Meter dentro del array favorite Animes el findAnime(con el push)
     favoriteAnimes.push(findAnime)
+    
+    // todos los elementos de los animes tienen que ser igual al id que ha seleccionado el usuario
     //Llamamos a la funcion para que añada a la lista de favoritos
     renderAnimesFavorites(favoriteAnimes);
-    // todos los elementos de los animes tienen que ser igual al id que ha seleccionado el usuario
 
     //Guardamos los datos en LS, lo convertimos en un array dado que nos da un string con 'JSON.stringify'
      localStorage.setItem('anime',JSON.stringify(favoriteAnimes)); 
     //pintamos en el HTML
-
     // Añadimos la clase para cambiar el estilo del elemento clicado
    event.currentTarget.classList.add('favorite-selected');
   };
@@ -121,11 +121,6 @@ if(animeLS !== null){
     favoriteAnimes = animeLS;
     renderAnimesFavorites(favoriteAnimes)
 };
-
-    //pintamos los datos
-
-
-
 
 
 // con esta función pintaremos los datos del servidor y con render recorrera el array que nos devuelve. necesitaremos un parámetro, tenemos que recorrer el array para que nos recoja todos los datos con un bucle(for) porque nos devuelve todos los datos.
@@ -188,13 +183,4 @@ const getDataApi = (searchValue) => {
 
 getDataApi('naruto');
 
-// funcion manejadora del evento
-function handleClickSearch(event){
-    console.log('Say hi');
-    event.preventDefault();
-    const searchValue = inputSearch.value; //cogemos el valor del input
-    getDataApi(searchValue);//llamamos al valor del input
-    
-};
-buttonSearch.addEventListener('click', handleClickSearch);// realizamos el evento click sobre el boton de buscar
-
+x
