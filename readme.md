@@ -39,10 +39,12 @@ Abre el archivo index.html en un navegador para ver la aplicación en acción.
 ### Estructura del Proyecto
 
 anime-search-favorites/
-│
+
 ├── index.html
+
 ├── styles/
 │   └── styles.css
+
 └── scripts/
     └── main.js
 - index.html: Contiene la estructura principal de la página.
@@ -66,4 +68,4 @@ Las contribuciones son bienvenidas. Si deseas contribuir:
 
 
 ### Autor
-EVORALOPRS 
+@EVORALOPRS 
