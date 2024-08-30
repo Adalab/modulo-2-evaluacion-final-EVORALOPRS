@@ -78,6 +78,7 @@ footer{
     padding: 50px;
 }
 .favorite-selected{
+    border: 5px solid #ff8030;
     background-color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;

@@ -28,9 +28,9 @@ si la bebida no aparece en favoritos, tenemos que añadirla, si existe en el arr
 1- Añadir los datos al localStorage
 2- Cuando recarge la pagina que se almacenen los animes seleccionados por el usuario 
 */ 
-const buttonSearch = document.querySelector('.js-btn-search');
-const inputSearch = document.querySelector('.js-text');
-const buttonReset = document.querySelector('.js-btn-reset');
+const buttonSearch = document.querySelector('.btn-search');
+const inputSearch = document.querySelector('.textInput');
+const buttonReset = document.querySelector('.btn-reset');
 const ulCounter = document.querySelector('.js-counter-list');
 const ulCounterFavorites = document.querySelector('.js-favorite-list');
 
@@ -42,17 +42,16 @@ let favoriteAnimes = [];
 
 const handleClickFavoriteAnime = (event) =>{
   //cogemos el ID
-  console.log(event.currentTarget.id);
+  console.log('hi');
   const idList = parseInt(event.currentTarget.id);// guardamos el Id dentro de una variable que hemos recogido en el evento click 
   //buscamos el id a ver si esta dentro del array con un bucle y usamos el findIndex(posicion del array)(si no está devuelve -1) para buscar el ID de las bebidas favoritas( nos lo devuelve)
   const findIndexAnimeFavorite = favoriteAnimes.findIndex((itemAnime)=> itemAnime.mal_id === idList);
-  console.log(findIndexAnimeFavorite) // nos da -1 porque aún no tenemos nada añadido en el array
+   // nos da -1 porque aún no tenemos nada añadido en el array
   //accedemos una condicional para añadir todo el objeto de los animes dentro de array de favorito, tenemos que buscar todo el la informacion del objeto de animes
 
   if(findIndexAnimeFavorite === -1){
     //obtenemos la información del elemento completo dentro del array, porque ahora solo tenemos el ID,con el find() buscamos el 'id'
     const findAnime = animeList.find((item2Anime) => item2Anime.mal_id === idList);
-    console.log (findAnime);
     // Meter dentro del array favorite Animes el findAnime(con el push)
     favoriteAnimes.push(findAnime)
     
@@ -64,16 +63,11 @@ const handleClickFavoriteAnime = (event) =>{
      localStorage.setItem('anime',JSON.stringify(favoriteAnimes)); 
     //pintamos en el HTML
     // Añadimos la clase para cambiar el estilo del elemento clicado
-   event.currentTarget.classList.add('favorite-selected');
+    //event.currentTarget.classList.add('favorite-selected');
   };
   
  
 };
-//Creamos una función en el que le pasemos un parametro con cualquier nombre porque necesitamos llamar al array las veces que haga falta. 
-
-//funcion click para eliminar los animes almacenados en la lista de favoritos
-
-
 
 
  // creamos una la lista de los animes favoritos para que se añadan los animes seleccionados
@@ -137,6 +131,8 @@ const renderAnimes = (arrayAnimes) =>{
         newList.setAttribute('id',eachAnime.mal_id);
         newList.addEventListener('click', handleClickFavoriteAnime);
 
+      
+
         const newName = document.createElement('h3');
         newList.appendChild(newName);
         const newTextName = document.createTextNode(eachAnime.title);
@@ -156,8 +152,11 @@ const renderAnimes = (arrayAnimes) =>{
         newList.appendChild(newText)
         const counterText = document.createTextNode(eachAnime.synopsis);
         newText.appendChild(counterText);
-
+       // añadir el anime a favoritos, si no existe añadiler la clase, si no que no haga nada
+        // para añadir el color
         
+           
+ 
     };
     
 };
@@ -183,4 +182,17 @@ const getDataApi = (searchValue) => {
 
 getDataApi('naruto');
 
-x
+// funcion manejadora del evento
+
+    function handleClickSearch(event){
+        console.log('Say hi');
+        event.preventDefault();
+        const searchValue = inputSearch.value; //cogemos el valor del input
+        getDataApi(searchValue);//llamamos al valor del input
+    };
+     
+    
+    
+    
+
+    buttonSearch.addEventListener('click', handleClickSearch);// realizamos el evento click sobre el boton de buscar
